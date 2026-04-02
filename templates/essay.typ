@@ -25,7 +25,7 @@
 #let running-title-track = 0.05em
 #let sidebar-size = 11pt
 #let body-size = 12pt
-#let footer-size = 14pt
+#let footer-size = 12pt
 
 #let right-label(size, body, tracking: 0em, weight: "regular", style: "normal") = {
   set text(size: size, tracking: tracking, weight: weight, style: style)
@@ -105,15 +105,15 @@
 ]
 
 #let page-title(title, deck: none) = block(
-  below: 24pt,
+  below: 40pt,
   [
     #set text(size: 28pt, tracking: 0.04em, weight: "bold")
     #set par(justify: false, leading: 0.98em)
     #title
 
     #if deck != none [
-      #v(18pt)
-      #set text(size: 13pt, weight: "regular")
+      #v(10pt)
+      #set text(size: 13pt, weight: "regular", style: "italic")
       #set par(justify: false, leading: 1.35em)
       #deck
     ]
