@@ -1,6 +1,6 @@
 #import "/templates/issue-state.typ": issue-date
 
-#issue-date.update([March 2026])
+#issue-date.update([MARCH 2026])
 
 #include "content/00-cover.typ"
 #pagebreak()

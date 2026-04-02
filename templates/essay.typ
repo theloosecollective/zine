@@ -26,6 +26,7 @@
 #let sidebar-size = 11pt
 #let body-size = 12pt
 #let footer-size = 12pt
+#let chunk-gap = 1.55em
 
 #let right-label(size, body, tracking: 0em, weight: "regular", style: "normal") = {
   set text(size: size, tracking: tracking, weight: weight, style: style)
@@ -120,15 +121,34 @@
   ],
 )
 
-#let sidebar(body) = place(
-  left,
-  dx: sidebar-x - body-left,
-  block(
-    width: sidebar-width,
-    [
-      #set text(size: sidebar-size, tracking: 0em, weight: "bold")
-      #set par(justify: false, leading: 1.35em)
-      #align(right, body)
-    ],
-  ),
+#let chunk(below: chunk-gap, body) = block(
+  width: 100%,
+  below: below,
+  body,
+)
+
+#let prose(below: chunk-gap, body) = chunk(
+  below: below,
+  body,
+)
+
+#let section(sidebar: none, below: chunk-gap, body) = chunk(
+  below: below,
+  [
+    #if sidebar != none [
+      #place(
+        left,
+        dx: sidebar-x - body-left,
+        block(
+          width: sidebar-width,
+          [
+            #set text(size: sidebar-size, tracking: 0em, weight: "bold")
+            #set par(justify: false, leading: 1.35em)
+            #align(right, sidebar)
+          ],
+        ),
+      )
+    ]
+    #body
+  ],
 )

@@ -18,12 +18,16 @@ Typst repo for making issues of a zine.
 - Essay files use a small set of helpers from `templates/essay.typ`
 
 ```typst
-#import "/templates/essay.typ": essay, page-title, sidebar
+#import "/templates/essay.typ": essay, page-title, prose, section
 
 #essay(short-title: [Example Essay])[
   #page-title([Example Essay])
-  #sidebar[SECTION\ 1.0]
-  Body copy goes here.
+  #section(sidebar: [SECTION\ 1.0])[
+    Body copy goes here.
+  ]
+  #prose[
+    More body copy goes here.
+  ]
 ]
 ```
 
