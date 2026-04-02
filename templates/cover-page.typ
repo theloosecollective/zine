@@ -1,11 +1,12 @@
 // Simple single-page cover template for issue openers.
 
+#import "/templates/issue-state.typ": issue-date
+
 #let page-size = 600pt
 
 #let cover-page(
   title: [],
   issue: [],
-  date: [],
   deck: none,
   contributors: none,
 ) = [
@@ -22,7 +23,7 @@
   )
   #place(left + top, dx: 34pt, dy: 28pt, [
     #set text(size: 12pt, tracking: 0.08em)
-    ZINE
+    THE LOOSE COLLECTIVE
   ])
 
   #place(left + top, dx: 32pt, dy: 58pt, [
@@ -44,7 +45,7 @@
   #place(right + top, dx: -35pt, dy: 298pt, block(width: 220pt)[
     #set text(size: 16pt, tracking: 0.02em)
     #set par(justify: false)
-    #align(right)[#date]
+    #context align(right)[#issue-date.get()]
   ])
 
   #if deck != none [

@@ -1,7 +1,7 @@
-#import "/templates/magazine-page.typ": magazine-page
+#import "/templates/essay-page.typ": essay-page
 
-#magazine-page(
-  intro: [
+#essay-page(
+  body: [
     For a number of years now, work has been proceeding in order to bring
     perfection to the crudely conceived idea of a transmission that would not
     only supply inverse reactive current for use in unilateral phase detractors,
@@ -13,8 +13,7 @@
     machine had a base plate of pre-famulated amulite surmounted by a malleable
     logarithmic casing in such a way that the two spurving bearings were in a
     direct line with the panametric fan.
-  ],
-  quote: [
+
     The latter consisted simply of six hydrocoptic marzlevanes, so fitted to
     the ambifacient lunar waneshaft that side fumbling was effectively
     prevented. The main winding was of the normal lotus-o-delta type placed in

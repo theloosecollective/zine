@@ -1,11 +1,9 @@
-#import "/templates/magazine-page.typ": magazine-page
+#import "/templates/essay-page.typ": essay-page
 
-#magazine-page(
-  date: [1972-12-05],
+#essay-page(
   sidebar-title: [EDITORIAL\ NOTES\ FOR\ CONTRIBUTORS],
   section: [Section\ 12.10],
-  page-number: 29,
-  intro: [
+  body: [
     This repository is meant to stay approachable. Each issue lives in its own
     folder. Shared layouts live in the templates directory. Most contributors
     should only need to edit files in the content folder of the current issue.
@@ -17,8 +15,7 @@
     including it from main.typ. When the publication evolves, the templates can
     evolve with it, but the issue folders should remain stable records of what
     was published at that moment in time.
-  ],
-  quote: [
+
     Keep the defaults simple. If a contributor needs to learn layout internals
     just to draft an essay page, the system is too clever. Templates should
     absorb complexity so the content files can stay readable.
