@@ -1,2 +1,2 @@
-*.svg
-*.png
+issues/*/*.pdf
+issues/*/*.png
