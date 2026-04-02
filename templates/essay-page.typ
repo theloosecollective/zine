@@ -13,7 +13,7 @@
 #let rules-y = 72pt
 #let sidebar-x = 12pt
 #let sidebar-y = 120pt
-#let sidebar-width = 76pt
+#let sidebar-width = 80pt
 #let copy-x = 122pt
 #let copy-y = 116pt
 #let copy-right = 26pt
@@ -24,7 +24,8 @@
 // Typography.
 #let title-size = 18pt
 #let header-size = 12pt
-#let sidebar-size = 13pt
+#let sidebar-title-size = 11pt
+#let sidebar-section-size = 13pt
 #let body-size = 12pt
 #let footer-size = 14pt
 
@@ -80,9 +81,9 @@
     block(
       width: sidebar-width,
       [
-        #right-label(sidebar-size, sidebar-title, tracking: 0.01em, weight: "bold")
+        #right-label(sidebar-title-size, sidebar-title, tracking: 0em, weight: "bold")
         #v(22pt)
-        #right-label(sidebar-size, section, weight: "bold")
+        #right-label(sidebar-section-size, section, weight: "bold")
       ],
     ),
   )
