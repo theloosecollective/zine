@@ -1,8 +1,7 @@
 // Simple single-page cover template for issue openers.
 
+#import "/templates/geometry.typ": *
 #import "/templates/issue-state.typ": issue-date
-
-#let page-size = 600pt
 
 #let cover-page(
   title: [],
@@ -11,8 +10,8 @@
   contributors: none,
 ) = [
   #set page(
-    width: page-size,
-    height: page-size,
+    width: page-width,
+    height: page-height,
     margin: 0pt,
     fill: white,
   )
@@ -21,44 +20,44 @@
     fill: black,
     lang: "en",
   )
-  #place(left + top, dx: 34pt, dy: 28pt, [
-    #set text(size: 12pt, tracking: 0.08em)
+  #place(left + top, dx: cover-inset, dy: cover-kicker-y, [
+    #set text(size: 10pt, tracking: 0.08em)
     THE LOOSE COLLECTIVE
   ])
 
-  #place(left + top, dx: 32pt, dy: 58pt, [
-    #line(length: 536pt, stroke: 1pt + black)
+  #place(left + top, dx: cover-inset, dy: cover-rule-y, [
+    #line(length: cover-rule-length, stroke: 1pt + black)
   ])
 
-  #place(left + top, dx: 32pt, dy: 92pt, block(width: 500pt)[
-    #set text(size: 34pt, tracking: 0.04em, weight: "bold")
+  #place(left + top, dx: cover-inset, dy: cover-title-y, block(width: cover-content-width)[
+    #set text(size: 28pt, tracking: 0.04em, weight: "bold")
     #set par(justify: false, leading: 0.95em)
     #title
   ])
 
-  #place(left + top, dx: 35pt, dy: 298pt, block(width: 220pt)[
-    #set text(size: 16pt, tracking: 0.02em)
+  #place(left + top, dx: cover-inset, dy: cover-meta-y, block(width: cover-meta-width)[
+    #set text(size: 14pt, tracking: 0.02em)
     #set par(justify: false, leading: 1.25em)
     ISSUE #issue
   ])
 
-  #place(right + top, dx: -35pt, dy: 298pt, block(width: 220pt)[
-    #set text(size: 16pt, tracking: 0.02em)
+  #place(right + top, dx: -cover-inset, dy: cover-meta-y, block(width: cover-meta-width)[
+    #set text(size: 14pt, tracking: 0.02em)
     #set par(justify: false)
     #context align(right)[#issue-date.get()]
   ])
 
   #if deck != none [
-    #place(left + top, dx: 34pt, dy: 346pt, block(width: 500pt)[
-      #set text(size: 17pt)
+    #place(left + top, dx: cover-inset, dy: cover-deck-y, block(width: cover-content-width)[
+      #set text(size: 14pt)
       #set par(justify: false, leading: 1.3em)
       #deck
     ])
   ]
 
   #if contributors != none [
-    #place(left + bottom, dx: 34pt, dy: -42pt, block(width: 500pt)[
-      #set text(size: 12pt, tracking: 0.01em)
+    #place(left + bottom, dx: cover-inset, dy: cover-contributors-y, block(width: cover-content-width)[
+      #set text(size: 10.5pt, tracking: 0.01em)
       #set par(justify: false, leading: 1.3em)
       #contributors
     ])
