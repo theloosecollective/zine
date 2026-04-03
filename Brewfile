@@ -1,0 +1,2 @@
+brew "typst"
+brew "just"
