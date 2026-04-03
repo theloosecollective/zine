@@ -34,6 +34,7 @@ More body copy goes here.
 
 Copy content from previous issue
 ```bash
+# issue-002 is the name of the new issue you're about to create
 just issue issue-002
 ```
 
@@ -44,3 +45,29 @@ From the repo root:
 just work issue-002
 ```
 This will re-produce the PDF as you work and allow you view the rendered pages.
+
+### Writing articles & essays
+
+Once you have `just work` running, create new `.typ` files in the `issues/issue-002/content` directory.
+
+### Compiling an issue
+
+Each issue has an entrypoint conventionally named `main.typ`. This file assembles an issue and typically looks like this:
+```typst
+#import "/templates/issue-state.typ": issue-date
+
+#issue-date.update([MARCH 2026])
+
+// Here we assemble the components of the issue. Besides the cover, each include can be many pages. 
+#include "content/00-cover.typ"
+#pagebreak()
+#include "content/01-specimen.typ"
+#pagebreak()
+#include "content/02-editorial-note.typ"
+```
+
+
+
+
+
+
