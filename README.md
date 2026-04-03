@@ -17,7 +17,7 @@ Typst repo for making issues of a zine.
 - Start a new issue by copying the previous issue folder
 - Essay files should feel like normal Typst documents
 
-_Example post. This would live in `issues/issue-001/example-essay.typ`_
+_Example post. This would live in `issues/issue-001/content/example-essay.typ`. It represents a single article within an issue._
 ```typst
 #import "/templates/essay.typ": essay, page-title
 
@@ -30,25 +30,17 @@ Body copy goes here.
 More body copy goes here.
 ```
 
-## Live preview your PDF while working
+## Starting a new issue
 
-From the repo root:
-```bash
-just work issue-001
-```
-This will re-produce the PDF as you work and allow you view the rendered zine pages.
-
-## Start a new issue
-
-Copy content from the previous issue to give you the structure and a good starting point
+Copy content from previous issue
 ```bash
 just issue issue-002
 ```
 
-## Build
+### Live preview your PDF while working
 
 From the repo root:
-
 ```bash
-just build issue-001
+just work issue-002
 ```
+This will re-produce the PDF as you work and allow you view the rendered pages.
