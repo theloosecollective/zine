@@ -1,48 +1,27 @@
-// Flowing essay environment with a few author-facing helpers.
+// Flowing essay environment. Authors should mostly write plain Typst prose.
 
-#import "/templates/issue-state.typ": issue-date
-
-#let page-size = 600pt
-
-// Page geometry.
-#let divider-x = 105pt
-#let rules-y = 72pt
-#let running-title-x = 122pt
-#let running-title-y = 25pt
-#let date-x = -26pt
-#let date-y = 24pt
-#let sidebar-x = 12pt
-#let sidebar-width = 80pt
-#let body-left = 122pt
-#let body-top = 116pt
-#let body-right = 26pt
-#let body-bottom = 56pt
-#let footer-x = -27pt
-#let footer-y = -14pt
-
+#import "/templates/geometry.typ": *
 // Typography.
 #let running-title-size = 12pt
 #let running-title-track = 0.05em
-#let sidebar-size = 11pt
-#let body-size = 12pt
+#let body-size = 11.5pt
 #let footer-size = 12pt
-#let chunk-gap = 1.55em
 
-#let right-label(size, body, tracking: 0em, weight: "regular", style: "normal") = {
+#let label(size, body, tracking: 0em, weight: "regular", style: "normal") = {
   set text(size: size, tracking: tracking, weight: weight, style: style)
   set par(justify: false)
-  align(right, body)
+  body
 }
 
 #let essay-foreground(short-title) = context [
-  #place(left + top, dy: rules-y, line(length: page-size, stroke: 1pt + black))
-  #place(left + top, dy: rules-y + 5pt, line(length: page-size, stroke: 1pt + black))
+  #place(left + top, dy: essay-rules-y, line(length: page-width, stroke: 1pt + black))
+  #place(left + top, dy: essay-rules-y + 5pt, line(length: page-width, stroke: 1pt + black))
   #place(
     left + top,
-    dx: divider-x,
+    dx: essay-divider-x,
     line(
       start: (0pt, 0pt),
-      end: (0pt, page-size),
+      end: (0pt, page-height),
       stroke: (paint: black, thickness: 1pt, dash: "dashed"),
     ),
   )
@@ -52,45 +31,31 @@
   #if page > 1 and short-title != [] [
     #place(
       left + top,
-      dx: running-title-x,
-      dy: running-title-y,
-      block(width: 320pt)[
-        #set text(size: running-title-size, tracking: running-title-track, weight: "bold")
-        #set par(justify: false)
-        #short-title
+      dx: essay-body-left,
+      block(width: essay-running-title-width, height: essay-header-height)[
+        #align(left + horizon, [
+          #label(running-title-size, short-title, tracking: running-title-track, weight: "bold")
+        ])
       ],
     )
   ]
 
   #place(
-    right + top,
-    dx: date-x,
-    dy: date-y,
-    block(width: 110pt)[
-      #right-label(running-title-size, issue-date.get(), tracking: 0.01em)
-    ],
-  )
-
-  #place(
     right + bottom,
-    dx: footer-x,
-    dy: footer-y,
-    block(width: 90pt)[
-      #right-label(footer-size, [PAGE #page], tracking: 0.01em)
+    dx: -essay-outer-inset,
+    block(width: essay-footer-width, height: essay-footer-height)[
+      #align(right + horizon, [
+        #label(footer-size, [PAGE #page], tracking: 0.01em)
+      ])
     ],
   )
 ]
 
-#let essay(short-title: [], body) = [
+#let essay(doc, short-title: []) = [
   #set page(
-    width: page-size,
-    height: page-size,
-    margin: (
-      top: body-top,
-      right: body-right,
-      bottom: body-bottom,
-      left: body-left,
-    ),
+    width: page-width,
+    height: page-height,
+    margin: essay-margin,
     fill: white,
     foreground: essay-foreground(short-title),
   )
@@ -101,54 +66,22 @@
     fill: black,
     lang: "en",
   )
-  #set par(justify: true, leading: 1.55em)
-  #body
+  #set par(justify: true, leading: 1.55em, spacing: 0.9em)
+  #doc
 ]
 
 #let page-title(title, deck: none) = block(
-  below: 40pt,
+  below: 34pt,
   [
-    #set text(size: 28pt, tracking: 0.04em, weight: "bold")
+    #set text(size: 24pt, tracking: 0.04em, weight: "bold")
     #set par(justify: false, leading: 0.98em)
     #title
 
     #if deck != none [
       #v(10pt)
-      #set text(size: 13pt, weight: "regular", style: "italic")
+      #set text(size: 12pt, weight: "regular", style: "italic")
       #set par(justify: false, leading: 1.35em)
       #deck
     ]
-  ],
-)
-
-#let chunk(below: chunk-gap, body) = block(
-  width: 100%,
-  below: below,
-  body,
-)
-
-#let prose(below: chunk-gap, body) = chunk(
-  below: below,
-  body,
-)
-
-#let section(sidebar: none, below: chunk-gap, body) = chunk(
-  below: below,
-  [
-    #if sidebar != none [
-      #place(
-        left,
-        dx: sidebar-x - body-left,
-        block(
-          width: sidebar-width,
-          [
-            #set text(size: sidebar-size, tracking: 0em, weight: "bold")
-            #set par(justify: false, leading: 1.35em)
-            #align(right, sidebar)
-          ],
-        ),
-      )
-    ]
-    #body
   ],
 )

@@ -15,20 +15,18 @@ Typst repo for making issues of a zine.
 - Authors should mostly edit files in `issues/<issue>/content/`
 - Template changes should stay in `templates/`
 - Start a new issue by copying the previous issue folder
-- Essay files use a small set of helpers from `templates/essay.typ`
+- Essay files should feel like normal Typst documents
 
 ```typst
-#import "/templates/essay.typ": essay, page-title, prose, section
+#import "/templates/essay.typ": essay, page-title
 
-#essay(short-title: [Example Essay])[
-  #page-title([Example Essay])
-  #section(sidebar: [SECTION\ 1.0])[
-    Body copy goes here.
-  ]
-  #prose[
-    More body copy goes here.
-  ]
-]
+#show: essay.with(short-title: [Example Essay])
+
+#page-title([Example Essay], deck: [An optional deck.])
+
+Body copy goes here.
+
+More body copy goes here.
 ```
 
 ## Build
