@@ -6,17 +6,18 @@ Typst repo for making issues of a zine.
 
 - `templates/`: shared layouts and components
 - `issues/issue-001/`: one self-contained issue
-- `issues/issue-001/main.typ`: build this file to make the issue PDF
-- `issues/issue-001/content/`: pages and writing
-- `issues/issue-001/assets/`: issue-specific images and reference material
+  - `main.typ`: the entrypoint of the issue; assemble all essays/content here
+  - `content/`: pages and writing
+  - `assets/`: issue-specific images and reference material
 
 ## Working Style
 
 - Authors should mostly edit files in `issues/<issue>/content/`
-- Template changes should stay in `templates/`
+- Template changes should stay in `templates/`; mostly don't need to edit here
 - Start a new issue by copying the previous issue folder
 - Essay files should feel like normal Typst documents
 
+_Example post. This would live in `issues/issue-001/example-essay.typ`_
 ```typst
 #import "/templates/essay.typ": essay, page-title
 
@@ -29,24 +30,25 @@ Body copy goes here.
 More body copy goes here.
 ```
 
+## Live preview your PDF while working
+
+From the repo root:
+```bash
+just work issue-001
+```
+This will re-produce the PDF as you work and allow you view the rendered zine pages.
+
+## Start a new issue
+
+Copy content from the previous issue to give you the structure and a good starting point
+```bash
+just issue issue-002
+```
+
 ## Build
 
 From the repo root:
 
 ```bash
-typst compile --root . issues/issue-001/main.typ issues/issue-001/issue-001.pdf
-```
-
-For live rebuilds:
-
-```bash
-typst watch --root . issues/issue-001/main.typ issues/issue-001/issue-001.pdf
-```
-
-Or use `just`:
-
-```bash
-just issue issue-002
-just work issue-001
 just build issue-001
 ```
